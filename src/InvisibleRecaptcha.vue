@@ -73,7 +73,7 @@
 					badge: this.badge,
 					theme: this.theme,
 					callback: token => {
-						this.callback(token);
+						this.callback(token,this.widgetId,this.id);
 						grecaptcha.reset(this.widgetId);
 					}
 				});
@@ -89,8 +89,8 @@
 			},
 
 			click: function() {
-				if (!this.validate || this.validate && this.validate() !== false)
-					grecaptcha.execute();
+				if (!this.validate || this.validate && this.validate(this.widgetId,this.id) !== false)
+					grecaptcha.execute( this.widgetId );
 			}
 		},
 
